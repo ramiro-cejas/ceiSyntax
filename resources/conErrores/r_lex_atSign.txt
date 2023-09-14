@@ -1,0 +1,6 @@
+///[Error:@|4]
+class OperadorError {
+    public void operadores() {
+        int x = 5 @ 3;
+    }
+}

@@ -1,0 +1,68 @@
+Prim(Inicial) ::= {Prim("class") Prim("interface") Prim()}
+Prim(ListaClases) ::= Prim("class") Prim("interface") | {Prim()}
+Prim(Clase) ::= {Prim("class") | Prim("interface")}
+Prim(ClaseConcreta) ::= {Prim("class")}
+Prim(Interface) ::= {Prim("interface")}
+Prim(HerenciaOpcional) ::= {Prim("extends")} | {Prim("implements")} | {Prim()}
+Prim(HeredaDe) ::= {Prim("extends")}
+Prim(ImplementaA) ::= {Prim("implements")}
+Prim(ExtiendeOpcional) ::= {Prim("extends")} | {Prim()}
+Prim(ListaMiembros) ::= {Prim("static") Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase") Prim("void") | Prim("public")} | {Prim()}
+Prim(ListaEncabezados) ::= {Prim("static") Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase") Prim("void")} | {Prim()}
+
+Prim(Miembro) ::= Prim("static") Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase") Prim("void") | Prim("public")
+
+Prim(MetodoOAtributo) ::= {Prim(";")} | {Prim("(")}
+
+Prim(EncabezadoMetodo) ::= Prim("static") Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase") Prim("void")
+
+Prim(Parte1Miembro) ::= {Prim("static") Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase") Prim("void")}
+
+Prim(Constructor) ::= {Prim("public")}
+Prim(TipoMiembro) ::= {Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase") Prim("void")}
+Prim(Tipo) ::= Prim("boolean") Prim("char") Prim("int") Prim("float") | Prim("idClase")
+Prim(TipoPrimitivo) ::= {Prim("boolean") Prim("char") Prim("int") Prim("float")}
+Prim(EstaticoOpcional) ::= {Prim("static")} | {Prim()}
+Prim(ArgsFormales) ::= Prim("(")
+Prim(ListaArgsFormalesOpcional) ::= Prim(ArgFormal) | {Prim()}
+
+Prim(ListaArgsFormales) ::= Prim(",")
+
+Prim(ArgFormal) ::= Prim("boolean") Prim("char") Prim("int") Prim("float") Prim("idClase")
+Prim(Bloque) ::= Prim("{")
+Prim(ListaSentencias) ::= Prim(";") Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(") Prim("var") Prim("return") Prim("if") Prim("while") Prim("{") | {Prim()}
+
+Prim(Sentencia) ::= Prim(";") | Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(") | Prim("var") | Prim("return") | Prim("if") | Prim("while") | Prim("{")
+
+Prim(AsignacionOLlamada) ::= Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(")
+Prim(VarLocal) ::= Prim("var")
+Prim(Return) ::= Prim("return")
+Prim(ExpresionOpcional) ::= Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(") | {Prim()}
+
+Prim(If) ::= Prim("if")
+Prim(ObligatoryIf) ::= Prim("if")
+Prim(Else) ::= Prim("else") | {Prim()}
+
+Prim(While) ::= Prim("while")
+Prim(Expresion) ::= Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(")
+Prim(AsignacionOpcionalDeExpresion) ::= Prim("=") | {Prim()}
+
+Prim(ExpresionCompuesta) ::= Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(")
+Prim(R) ::= Prim("||") Prim("&&") Prim("==") Prim("!=") Prim("<") Prim(">") Prim("<=") Prim(">=") Prim("+") Prim("-") Prim("*") Prim("/") Prim("%") | {Prim()}
+
+Prim(OperadorBinario) ::= Prim("||") Prim("&&") Prim("==") Prim("!=") Prim("<") Prim(">") Prim("<=") Prim(">=") Prim("+") Prim("-") Prim("*") Prim("/") Prim("%")
+Prim(ExpresionBasica) ::= Prim("+") Prim("-") Prim("!") | Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(")
+Prim(OperadorUnario) ::= Prim("+") Prim("-") Prim("!")
+Prim(Operando) ::= Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") | Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(")
+Prim(Literal) ::= Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral")
+Prim(Acceso) ::= Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(")
+
+Prim(Primario) ::= Prim("this") | Prim("idMetVAr") | Prim("new") | Prim("idClase") | Prim("(")
+Prim(ContinuacionMetodo) ::= Prim("(")
+
+Prim(ListaExpsOpcional) ::= Prim("+") Prim("-") Prim("!") Prim("null") Prim("true") Prim("false") Prim("intLiteral") Prim("charLiteral") Prim("stringLiteral") Prim("floatLiteral") Prim("this") Prim("idMetVAr") Prim("new") Prim("idClase") Prim("(") | {Prim()}
+Prim(ListaExps) ::= Prim(",") | {Prim()}
+
+Prim(EncadenadoOpcional) ::= Prim(".") | {Prim()}
+Prim(PuntoYMetVar) ::= Prim(".")
+Prim(ArgsOpcionales) ::= Prim("(") | {Prim()}
