@@ -91,7 +91,7 @@ public class LexicalAnalyzer {
     private Token e0() throws LexicalException, IOException {
         lexeme = "";
 
-        while (currentChar == ' ' || currentChar == '\n' || currentChar == '\r'){
+        while (currentChar == ' ' || currentChar == '\n' || currentChar == '\r' || currentChar == '\t'){
             updateChar();
 
         }
@@ -181,15 +181,13 @@ public class LexicalAnalyzer {
             updateChar();
             return eFloatNumber1();
         }else {
-            updateLexeme();
-            updateChar();
             return ePunctuator();
         }
     }
 
     private Token eFinal() {
         updateLexeme();
-        return new Token("EOF",lexeme, fileManipulator.getCurrentLine());
+        return new Token("EOF","", fileManipulator.getCurrentLine());
     }
 
     private Token eString1() throws LexicalException, IOException {

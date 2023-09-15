@@ -12,7 +12,7 @@
 
 <Miembro> ::= <Parte1Miembro> <MetodoOAtributo> | <Constructor>
 
-<MetodoOAtributo> ::= ";" | <ArgsFormales> <Bloque>
+<MetodoOAtributo> ::= <AsignacionOpcionalDeExpresion> ";" | <ArgsFormales> <Bloque>
 
 <EncabezadoMetodo> ::= <Parte1Miembro> <ArgsFormales> ";"
 
@@ -45,8 +45,7 @@
 <Return> ::= "return" <ExpresionOpcional>
 <ExpresionOpcional> ::= <Expresion> | #
 
-<If> ::= <ObligatoryIf> <Else>
-<ObligatoryIf> ::= "if" "(" <Expresion> ")" <Sentencia>
+<If> ::= "if" "(" <Expresion> ")" <Sentencia> <Else>
 <Else> ::= "else" <Sentencia> | #
 
 <While> ::= "while" "(" <Expresion> ")" <Sentencia>
@@ -55,8 +54,8 @@
 
 /<ExpresionCompuesta> ::= <ExpresionCompuesta> <OperadorBinario> <ExpresionBasica>
 <ExpresionCompuesta> ::= <ExpresionBasica>/
-<ExpresionCompuesta> ::= <ExpresionBasica> <R>
-<R> ::= <OperadorBinario> <ExpresionBasica> <R> | #
+<ExpresionCompuesta> ::= <ExpresionBasica> <RecursionExpresionCompuesta>
+<RecursionExpresionCompuesta> ::= <OperadorBinario> <ExpresionBasica> <RecursionExpresionCompuesta> | #
 
 <OperadorBinario> ::= "||" | "&&" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "+" | "-" | "*" | "/" | "%"
 <ExpresionBasica> ::= <OperadorUnario> <Operando>
@@ -82,7 +81,7 @@
 <ArgsActuales> ::= "(" <ListaExpsOpcional> ")"
 
 <ListaExpsOpcional> ::= <Expresion> <ListaExps> | #
-<ListaExps> ::= "," <ListaExps> | #
+<ListaExps> ::= "," <Expresion> <ListaExps> | #
 
 <EncadenadoOpcional> ::= <PuntoYMetVar> <ArgsOpcionales> <EncadenadoOpcional>| #
 

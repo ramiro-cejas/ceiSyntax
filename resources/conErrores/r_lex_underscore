@@ -1,6 +1,0 @@
-///[Error:_|4]
-class ClaseError {
-    public void miMetodo() {
-        int _variable = 10;
-    }
-}
