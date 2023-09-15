@@ -640,7 +640,7 @@ public class SyntaxAnalyzer {
     }
 
     private void genericoOpcional() throws LexicalException, SyntaxException, IOException {
-        print("Entre en generico");
+        print("Entre en genericoOpcional");
         if (tokenActual.getName().equals("operator_<")){
             match("operator_<");
             claseOpcional();
@@ -672,7 +672,7 @@ public class SyntaxAnalyzer {
     }
 
     private void genericoConID() throws LexicalException, SyntaxException, IOException {
-        print("Entre en genericOpcional");
+        print("Entre en genericoConID");
         if (tokenActual.getName().equals("operator_<")){
             match("operator_<");
             match("idClass");
