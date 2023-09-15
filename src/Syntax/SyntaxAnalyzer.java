@@ -9,7 +9,7 @@ import java.io.IOException;
 public class SyntaxAnalyzer {
     private LexicalAnalyzer lexicalAnalyzer;
     private Token tokenActual;
-    private boolean verbose = false;
+    private boolean verbose = true;
     public SyntaxAnalyzer(LexicalAnalyzer lexicalAnalyzer) {
         this.lexicalAnalyzer = lexicalAnalyzer;
     }
@@ -61,6 +61,7 @@ public class SyntaxAnalyzer {
         print("Entre en claseConcreta");
         match("keyword_class");
         match("idClass");
+        genericoConID();
         herenciaOpcional();
         match("punctuator_{");
         listaMiembros();
@@ -71,6 +72,7 @@ public class SyntaxAnalyzer {
         print("Entre en interfaceConcreta");
         match("keyword_interface");
         match("idClass");
+        genericoOpcional();
         extiendeOpcional();
         match("punctuator_{");
         listaEncabezados();
@@ -93,6 +95,7 @@ public class SyntaxAnalyzer {
         if (tokenActual.getName().equals("keyword_extends")){
             match("keyword_extends");
             match("idClass");
+            genericoOpcional();
         } else {
             print("Error en heredaDe");
             throw new SyntaxException(lexicalAnalyzer.getLine(), "extends", tokenActual.getLexeme());
@@ -104,6 +107,7 @@ public class SyntaxAnalyzer {
         if (tokenActual.getName().equals("keyword_implements")){
             match("keyword_implements");
             match("idClass");
+            genericoOpcional();
         } else {
             print("Error en implementaA");
             throw new SyntaxException(lexicalAnalyzer.getLine(), "implements", tokenActual.getLexeme());
@@ -115,6 +119,7 @@ public class SyntaxAnalyzer {
         if (tokenActual.getName().equals("keyword_extends")){
             match("keyword_extends");
             match("idClass");
+            genericoOpcional();
         } else {
             //Epsilon
         }
@@ -197,6 +202,7 @@ public class SyntaxAnalyzer {
         print("Entre en constructor");
         match("keyword_public");
         match("idClass");
+        genericoOpcional();
         argsFormales();
         bloque();
     }
@@ -219,6 +225,7 @@ public class SyntaxAnalyzer {
             tipoPrimitivo();
         } else if (tokenActual.getName().equals("idClass")){
             match("idClass");
+            genericoOpcional();
         } else {
             print("Error en tipo");
             throw new SyntaxException(lexicalAnalyzer.getLine(), "keyword_boolean o keyword_char o keyword_int o keyword_float o idClass", tokenActual.getLexeme());
@@ -558,6 +565,7 @@ public class SyntaxAnalyzer {
         print("Entre en accesoConstructor");
         match("keyword_new");
         match("idClass");
+        genericoOpcional();
         argsActuales();
     }
 
@@ -571,6 +579,7 @@ public class SyntaxAnalyzer {
     private void accesoMetodoEstatico() throws LexicalException, SyntaxException, IOException {
         print("Entre en accesoMetodoEstatico");
         match("idClass");
+        genericoOpcional();
         match("punctuator_.");
         match("idMetVar");
         argsActuales();
@@ -625,6 +634,50 @@ public class SyntaxAnalyzer {
         print("Entre en argsOpcionales");
         if (tokenActual.getName().equals("punctuator_(")){
             argsActuales();
+        } else {
+            //Epsilon
+        }
+    }
+
+    private void genericoOpcional() throws LexicalException, SyntaxException, IOException {
+        print("Entre en generico");
+        if (tokenActual.getName().equals("operator_<")){
+            match("operator_<");
+            claseOpcional();
+            match("operator_>");
+        } else {
+            //Epsilon
+        }
+    }
+
+    private void claseOpcional() throws LexicalException, SyntaxException, IOException {
+        print("Entre en claseOpcional");
+        if (tokenActual.getName().equals("idClass")){
+            match("idClass");
+            listaDeClasesOpcionales();
+        } else {
+            //Epsilon
+        }
+    }
+
+    private void listaDeClasesOpcionales() throws LexicalException, SyntaxException, IOException {
+        print("Entre en listaDeClasesOpcionales");
+        if (tokenActual.getName().equals("punctuator_,")){
+            match("punctuator_,");
+            match("idClass");
+            listaDeClasesOpcionales();
+        } else {
+            //Epsilon
+        }
+    }
+
+    private void genericoConID() throws LexicalException, SyntaxException, IOException {
+        print("Entre en genericOpcional");
+        if (tokenActual.getName().equals("operator_<")){
+            match("operator_<");
+            match("idClass");
+            listaDeClasesOpcionales();
+            match("operator_>");
         } else {
             //Epsilon
         }

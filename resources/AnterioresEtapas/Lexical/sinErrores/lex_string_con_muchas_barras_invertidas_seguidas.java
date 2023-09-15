@@ -1,2 +1,0 @@
-///[SinError]
-String s = "\\\\\\a";
