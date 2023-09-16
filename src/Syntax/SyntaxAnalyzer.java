@@ -9,7 +9,7 @@ import java.io.IOException;
 public class SyntaxAnalyzer {
     private LexicalAnalyzer lexicalAnalyzer;
     private Token tokenActual;
-    private boolean verbose = true;
+    private boolean verbose = false;
     public SyntaxAnalyzer(LexicalAnalyzer lexicalAnalyzer) {
         this.lexicalAnalyzer = lexicalAnalyzer;
     }
@@ -689,4 +689,11 @@ public class SyntaxAnalyzer {
         }
     }
 
+    public void enableVerbose() {
+        this.verbose = true;
+    }
+
+    public void disableVerbose() {
+        this.verbose = false;
+    }
 }
