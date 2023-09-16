@@ -53,7 +53,7 @@ public class SyntaxAnalyzer {
             interfaceConcreta();
         } else {
             print("Error en clase");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "keyword_class o keyword_interface", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "class o interface", tokenActual.getLexeme());
         }
     }
 
@@ -154,7 +154,7 @@ public class SyntaxAnalyzer {
             constructor();
         } else {
             print("Error en miembro");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "keyword_static o keyword_boolean o keyword_char o keyword_int o keyword_float o idClass o keyword_void", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "static o un tipo", tokenActual.getLexeme());
         }
     }
 
@@ -194,6 +194,24 @@ public class SyntaxAnalyzer {
     private void parte1Miembro() throws LexicalException, SyntaxException, IOException {
         print("Entre en parte1Miembro");
         estaticoOpcional();
+
+        if (tokenActual.getName().equals("operator_<")){
+            metodoGenerico();
+        } else if (tokenActual.getName().equals("keyword_boolean") || tokenActual.getName().equals("keyword_char") || tokenActual.getName().equals("keyword_int") || tokenActual.getName().equals("keyword_float") || tokenActual.getName().equals("idClass") || tokenActual.getName().equals("keyword_void") || tokenActual.getName().equals("idMetVar")){
+            tipoMiembro();
+            match("idMetVar");
+        } else {
+            print("Error en parte1Miembro");
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "< o un tipo", tokenActual.getLexeme());
+        }
+    }
+
+    private void metodoGenerico() throws LexicalException, SyntaxException, IOException {
+        print("Entre en metodoGenerico");
+        match("operator_<");
+        match("idClass");
+        listaDeClasesOpcionales();
+        match("operator_>");
         tipoMiembro();
         match("idMetVar");
     }
@@ -215,7 +233,7 @@ public class SyntaxAnalyzer {
             match("keyword_void");
         } else {
             print("Error en tipoMiembro");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "keyword_boolean o keyword_char o keyword_int o keyword_float o idClass o keyword_void", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "un tipo", tokenActual.getLexeme());
         }
     }
 
@@ -228,7 +246,7 @@ public class SyntaxAnalyzer {
             genericoOpcional();
         } else {
             print("Error en tipo");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "keyword_boolean o keyword_char o keyword_int o keyword_float o idClass", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "un tipo", tokenActual.getLexeme());
         }
     }
 
@@ -244,7 +262,7 @@ public class SyntaxAnalyzer {
             match("keyword_float");
         } else {
             print("Error en tipoPrimitivo");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "keyword_boolean o keyword_char o keyword_int o keyword_float", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "boolean, char, int o float", tokenActual.getLexeme());
         }
     }
 
@@ -329,7 +347,7 @@ public class SyntaxAnalyzer {
             bloque();
         } else {
             print("Error en sentencia");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "; o operator_+ o operator_- o ! o null o true o false o intLiteral o charLiteral o stringLiteral o floatLiteral o this o idMetVar o keyword_new o idClass o ( o keyword_var o keyword_return o keyword_if o keyword_while o {", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "una sentencia", tokenActual.getLexeme());
         }
     }
 
@@ -453,6 +471,7 @@ public class SyntaxAnalyzer {
             match("operator_%");
         } else {
             print("Error en operadorBinario");
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "operador binario", tokenActual.getLexeme());
         }
     }
 
@@ -465,7 +484,7 @@ public class SyntaxAnalyzer {
             operando();
         } else {
             print("Error en expresionBasica");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "+ o - o ! o null o true o false o intLiteral o charLiteral o stringLiteral o floatLiteral o this o idMetVar o keyword_new o idClass o (", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "operador unario u operando", tokenActual.getLexeme());
         }
     }
 
@@ -479,7 +498,7 @@ public class SyntaxAnalyzer {
             match("operator_!");
         } else {
             print("Error en operadorUnario");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), "+ o - o !", tokenActual.getLexeme());
+            throw new SyntaxException(lexicalAnalyzer.getLine(), "operador unario", tokenActual.getLexeme());
         }
     }
 
@@ -537,7 +556,7 @@ public class SyntaxAnalyzer {
             expresionParentizada();
         } else {
             print("Error en primario");
-            throw new SyntaxException(lexicalAnalyzer.getLine(), tokenActual.getName(), "this o idMetVar o keyword_new o idClass o (");
+            throw new SyntaxException(lexicalAnalyzer.getLine(), tokenActual.getName(), "this, identificador, new o (");
         }
     }
 
