@@ -72,7 +72,7 @@ public class SyntaxAnalyzer {
         print("Entre en interfaceConcreta");
         match("keyword_interface");
         match("idClass");
-        genericoOpcional();
+        genericoConID();
         extiendeOpcional();
         match("punctuator_{");
         listaEncabezados();
