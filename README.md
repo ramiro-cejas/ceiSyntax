@@ -17,7 +17,7 @@ This project is developed in several stages:
 
 ## Documentation
 
-[Syntax Analyzer Documentation (Only Declarations)](https://github.com/ramiro-cejas/ceiSyntax/blob/main/Informe%20CeI%20Analizador%20Sintactico.pdf)
+[Syntax Analyzer Documentation](https://github.com/ramiro-cejas/ceiSyntax/blob/main/Informe%20CeI%20Analizador%20Sintactico.pdf)
 
 ## Authors
 
